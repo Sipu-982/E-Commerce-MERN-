@@ -1,0 +1,9 @@
+input{
+    transition: box-shadow 0.5s ease;
+    outline: none;
+    border:2px solid rgb(212, 212, 250);
+}
+input:focus{
+    box-shadow:0 0 5px  rgb(90, 102, 183);
+    
+}

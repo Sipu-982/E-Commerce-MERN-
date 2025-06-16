@@ -14,7 +14,7 @@ const addProduct= async(req,res)=>{
 }
         const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: process.env.CLOUDINARY_UPLOAD_FOLDER },
+        { folder: process.env.CLOUDINARY_PRODUCT_FOLDER },
         (error, result) => {
           if (error) {
             console.error("Cloudinary error:", error);
@@ -34,7 +34,9 @@ const addProduct= async(req,res)=>{
          ratings,
          category,
          imageUrls:result.secure_url,
-          description
+          description,
+          // customer:req.user._id
+
         })
         await createProduct.save();
       return res.status(201).json({message:"Product successfully added!",data:createProduct})

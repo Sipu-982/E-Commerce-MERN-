@@ -3,10 +3,10 @@ import Header from './Header'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
 
-const AppLayout = () => {
+const AppLayout = ({count}) => {
   return (
     <div className='flex flex-col min-h-screen'>
-        <Header/>
+        <Header count={count}/>
         <main className='flex-grow'>
             <Outlet/>
         </main>

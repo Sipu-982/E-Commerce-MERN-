@@ -11,8 +11,18 @@ const Cards1 = () => {
   const fetchPopularShirt = async () => {
     setLoading(true);
     try {
+      const token = localStorage.getItem("authenticateSeller");
+      console.log("Token from localStorage:", token);
+      if (!token) {
+        alert("No token found. Please log in again.");
+        return;
+      }
       const res = await axios.get(
-        'http://localhost:3004/api/product/filterProduct?category=Shirt'
+        'http://localhost:3004/api/product/filterProduct?category=Shirt',{
+           headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        }
       );
       const filtered = res.data.filter_Products || [];
       setPopularProducts(filtered.slice(0, 4)); // Only 4 items
@@ -45,7 +55,7 @@ const Cards1 = () => {
       {!loading && popularProducts.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
           {popularProducts.map((product) => (
-            <Link>
+            <Link to='/products?category=Shirt'>
             <div
               key={product._id}
               className="border border-gray-200 w-[200px] rounded-md p-2 hover:shadow-md  transition"

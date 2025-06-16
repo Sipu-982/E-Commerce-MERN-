@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Popular = () => {
   const [popularProducts, setPopularProducts] = useState([]);
@@ -12,7 +13,17 @@ const Popular = () => {
   const fetchPopularLaptops = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:3004/api/product/filterProduct?category=Jean');
+      const token = localStorage.getItem("authenticateSeller");
+      console.log("Token from localStorage:", token);
+      if (!token) {
+        alert("No token found. Please log in again.");
+        return;
+      }
+      const res = await axios.get('http://localhost:3004/api/product/filterProduct?category=Jean',{
+         headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setPopularProducts((res.data.filter_Products || []).slice(0, 9));
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch products');
@@ -65,7 +76,7 @@ const Popular = () => {
 
   return (
     <div className="bg-white m-4">
-      <h2 className="text-xl font-bold py-5 px-3 text-gray-800">Popular Laptops</h2>
+      <h2 className="text-xl font-bold py-5 px-3 text-gray-800">Trending Collections</h2>
 
       {loading && <p className="text-center text-blue-600">Loading...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
@@ -81,6 +92,7 @@ const Popular = () => {
         >
           {popularProducts.map((product) => (
             <div key={product._id} className="p-2 w-[250px]">
+              <Link to='/products?category=Jean'>
               <div className="p-3 transition">
                 <img
                   src={Array.isArray(product.imageUrls) ? product.imageUrls[0] : product.imageUrls}
@@ -91,6 +103,7 @@ const Popular = () => {
                 <p className="text-sm text-gray-500">{product.brand}</p>
                 <p className="text-blue-600 font-bold mt-1">₹{product.price}</p>
               </div>
+              </Link>
             </div>
           ))}
         </Carousel>

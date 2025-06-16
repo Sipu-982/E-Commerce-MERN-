@@ -30,7 +30,7 @@ const Catagories = ({ onSelect }) => {
           <button
   key={index}
   onClick={() => onSelect(cat.label)}
-  className="flex flex-col items-center group"
+  className="flex flex-col cursor-pointer items-center group"
 >
   <div className="w-20 h-20  rounded-full group-hover:border-orange-500 shadow-md rounded-b-lg shadow-gray-50 group-hover:shadow-oranges-200 p-2 transition-all duration-300 ease-in-out">
     <img src={cat.img} alt={cat.label} className="w-full h-full object-contain" />

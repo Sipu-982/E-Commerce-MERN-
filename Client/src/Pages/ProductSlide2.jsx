@@ -6,9 +6,9 @@ import bg2 from '../Images/speakers.jpg';
 import bg3 from '../Images/smart-watch.jpg';
 
 const bg = [
-  { background: bg1 },
-  { background: bg2 },
-  { background: bg3 },
+  { background: bg1,category: 'Grocery' },
+  { background: bg2,category: 'Electronic' },
+  { background: bg3,category: 'Electronic' },
 
 ];
 
@@ -16,7 +16,7 @@ const ProductSlide2 = () => {
   return (
     <div className="mx-4 my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-4">
       {bg.map((picture, index) => (
-        <Link key={index} to="#">
+        <Link key={index} to={`/products?category=${picture.category}`}>
           <div className="overflow-hidden">
             <img
               src={picture.background}

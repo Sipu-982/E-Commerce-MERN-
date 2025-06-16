@@ -1,0 +1,50 @@
+.form-field{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    row-gap: 5px;
+    padding: 2px 0;
+}
+.form-field input,
+.form-field select{
+  /* border: 2px solid rgb(69, 79, 69); */
+  outline: none;
+  padding: 5px;
+  border: none;
+  border-radius: 0;
+  background: #fcf5f5;
+  border-bottom: 2px solid rgb(69, 79, 69);
+  transition: border-bottom-color 0.5s ease;
+}
+.form-field input:focus{
+  border-bottom-color: rgb(13, 187, 91);
+  box-shadow: none;
+}
+.form-content{
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background: rgba(237, 241, 238, 0.679);
+    border: 1px solid rgb(216, 210, 210);
+}
+
+.custom-overlay{
+     position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Black with 40% opacity */
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  z-index: 50;
+  overflow-y: auto;
+  
+}
+form{
+    transition: 0.5s ease-in-out;
+    animation: fadeIn 0.4s ease-in-out forwards;
+
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

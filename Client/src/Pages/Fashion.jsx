@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Popular = () => {
   const [popularProducts, setPopularProducts] = useState([]);
@@ -12,7 +13,17 @@ const Popular = () => {
   const fetchPopularShirt = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:3004/api/product/filterProduct?category=Shirt');
+      const token = localStorage.getItem("authenticateSeller");
+      console.log("Token from localStorage:", token);
+      if (!token) {
+        alert("No token found. Please log in again.");
+        return;
+      }
+      const res = await axios.get('http://localhost:3004/api/product/filterProduct?category=Shirt',{
+         headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setPopularProducts((res.data.filter_Products || []).slice(0, 9));
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch products');
@@ -65,7 +76,7 @@ const Popular = () => {
 
   return (
     <div className="bg-white m-4">
-      <h2 className="text-xl font-bold py-5 px-3 text-gray-800">Popular Laptops</h2>
+      <h2 className="text-xl font-bold py-5 px-3 text-gray-800">Trending Men top wear</h2>
 
       {loading && <p className="text-center text-blue-600">Loading...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
@@ -80,6 +91,8 @@ const Popular = () => {
           customButtonGroup={<CustomButtonGroup />}
         >
           {popularProducts.map((product) => (
+                         <Link to="/products?category=Shirt">
+
             <div key={product._id} className="p-2 w-[250px]">
               <div className="p-3 transition">
                 <img
@@ -92,6 +105,7 @@ const Popular = () => {
                 <p className="text-blue-600 font-bold mt-1">₹{product.price}</p>
               </div>
             </div>
+            </Link>
           ))}
         </Carousel>
       )}

@@ -5,7 +5,6 @@ const productSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
-
     brand:{
         type:String,
         required:true
@@ -35,7 +34,13 @@ const productSchema= new mongoose.Schema({
     imageUrls:{
         type:String,
         required:true
-    }
+    },
+    // customer:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'User',
+    //     required:true
+    // }
+
 },{timestamps:true})
 
 const productModel= mongoose.model('Product',productSchema)

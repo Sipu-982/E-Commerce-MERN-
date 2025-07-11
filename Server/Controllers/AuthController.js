@@ -88,7 +88,7 @@ const loginWithOtp= async(req,res)=>{
             return res.status(200).json({ message: "OTP sent to email."});
 
     } catch (error) {
-            console.error(err);
+            console.error(error);
     return res.status(500).json({ error: "OTP request failed!" });
   
     }
@@ -122,8 +122,8 @@ const verifyOTPLogin = async (req, res) => {
     );
 
     return res.status(200).json({ message: "Login successful!", token, Data: user });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({ error: "OTP verification failed!" });
   }
 };

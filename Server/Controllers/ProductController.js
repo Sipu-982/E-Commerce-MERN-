@@ -85,12 +85,14 @@ const searchProduct = async (req, res) => {
     if (!title && !brand) {
       return res.status(400).json({ message: "Please provide at least one search query (title or brand)." });
     }
-   const query = {};
+   const query = {
+    $or:[]
+   };
    if(title){
-    query.title={$regex: title, $options: "i"}
+    query.$or.push({ title: { $regex: title, $options: 'i' } });
    }
    if(brand){
-    query.brand={ $regex:brand, $options:"i"}
+    query.$or.brand={ $regex:brand, $options:"i"}
    }
      const fetchProduct = await productModel.find(query);
     if (!fetchProduct || fetchProduct.length === 0) {

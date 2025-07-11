@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await axios.post("https://e-commerce-mern-zpcv.onrender.com/loginUser", {
+      const response = await axios.post("http://localhost:3004/api/auth/loginUser", {
         email, password
       })
 

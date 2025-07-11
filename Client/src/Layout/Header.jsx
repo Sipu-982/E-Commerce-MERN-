@@ -23,7 +23,7 @@ const Header = ({ count }) => {
         alert("No token found. Please log in again.");
         return;
       }
-        const res = await axios.get(`http://localhost:3004/api/product/searchProduct?title=${query}`,{
+        const res = await axios.get(`http://localhost:3004/api/product/searchProduct?title=${query}&brand=${query}`,{
            headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -52,12 +52,14 @@ const Header = ({ count }) => {
         alert("No token found. Please log in again.");
         return;
       }
-        const res = await axios.get(`http://localhost:3004/api/product/searchProduct?title=${value}`,{
+        const res = await axios.get(`http://localhost:3004/api/product/searchProduct?title=${value}&brand=${value}`,{
            headers: {
           Authorization: `Bearer ${token}`,
         },
         });
         setSuggestions(res.data.data);
+              console.log("Suggestions:", res.data.data); // Debug log
+
         setShowDropdown(true);
       } catch (error) {
         console.log("Autocomplete failed", error);
@@ -141,8 +143,8 @@ const Header = ({ count }) => {
                 className="px-4 py-2 hover:bg-blue-50 cursor-pointer"
                 onClick={() => handleSuggestionClick(item.title, item.category)}
               >
-                {item.title}
-              </li>
+     <div className="text-gray-900 font-medium">{item.title}</div>
+    <div className="text-xs text-blue-700">{item.brand}</div></li>
             ))}
           </ul>
         )}

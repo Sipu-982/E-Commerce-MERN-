@@ -70,8 +70,8 @@ const Cart = ({ setCartCount }) => {
     (acc, item) => acc + parsePrice(item.discountPrice) * item.quantity,
     0
   );
-  const couponPrice = 500;
-  const finalPrice = addProductPrice - addDiscountPrice - couponPrice;
+  const couponPrice = 699;
+  const finalPrice = addProductPrice - couponPrice;
 
   const buyRoute= ()=>{
     navigate('/payment',{

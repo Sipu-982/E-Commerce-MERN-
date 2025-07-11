@@ -46,7 +46,7 @@ return (
                     className="p-2 rounded border border-gray-700 text-black"
                   />
                 </div>
-                   <button type='submit' className='p-2 mt-4 bg-green-700 transition-all rounded-[30px] duration-500 hover:opacity-75 cursor-pointer text-white  rounded shadow'>Send OTP</button>    
+                   <button type='submit' className='p-2 mt-4 bg-green-700 transition-all  duration-500 hover:opacity-75 cursor-pointer text-white  rounded shadow'>Send OTP</button>    
            <div className="flex justify-start"><Link to='/login' className='flex items-center gap-x-2 text-black p-2 text-[18px] text-center'><span><FcLeft size={20}/></span><span>Back</span></Link></div>
             </form>
           </div>

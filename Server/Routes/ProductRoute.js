@@ -10,6 +10,6 @@ router.post('/addProduct',upload.single("image"),addProduct)
 router.get('/findProducts',findProduct)
 router.get('/searchProduct',authenticateSeller,searchProduct)
 router.get('/filterProduct',authenticateSeller,filterProduct)
-router.get('/getProductById/:id',authenticateSeller,getProductById)
+router.get('/getProductById/:id',getProductById)
 router.put('/updateProduct/:id',upload.single("image"),updateProduct)
 module.exports=router
